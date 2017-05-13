@@ -99,15 +99,13 @@ class AvgColorPicker implements AvgColorPickerContract
      */
     private function calculateAvgRgbColor(array $firstRgb, array $secondRgb): array
     {
-        $avgRgb = [];
-
         list($firstRed, $firstGreen, $firstBlue) = $firstRgb;
         list($secondRed, $secondGreen, $secondBlue) = $secondRgb;
 
-        array_push($avgRgb, (int)(($firstRed + $secondRed) / 2));
-        array_push($avgRgb, (int)(($firstGreen + $secondGreen) / 2));
-        array_push($avgRgb, (int)(($firstBlue + $secondBlue) / 2));
-
-        return $avgRgb;
+        return array_map('intval', [
+            ($firstRed + $secondRed) / 2,
+            ($firstGreen + $secondGreen) / 2,
+            ($firstBlue + $secondBlue) / 2,
+        ]);
     }
 }
