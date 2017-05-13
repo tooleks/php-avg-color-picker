@@ -5,7 +5,7 @@ use Tooleks\Php\AvgColorPicker\Gd\AvgColorPicker;
 /**
  * Class GdAvgColorPickerTest.
  */
-class GdAvgColorPickerTest extends TestCase
+class GdAvgColorPickerTest extends \PHPUnit\Framework\TestCase
 {
     public function testGetImageAvgHexColorByPathFromGif()
     {

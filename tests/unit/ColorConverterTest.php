@@ -5,7 +5,7 @@ use Tooleks\Php\AvgColorPicker\ColorConverter;
 /**
  * Class ColorConverterTest.
  */
-class ColorConverterTest extends TestCase
+class ColorConverterTest extends \PHPUnit\Framework\TestCase
 {
     public function testHex2Rgb()
     {
