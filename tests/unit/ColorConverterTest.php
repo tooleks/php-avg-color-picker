@@ -14,32 +14,32 @@ class ColorConverterTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals([255, 255, 255], (new ColorConverter)->hex2rgb('#ffffff'));
     }
 
-    public function testHex2RgbWithInvalidMinLength()
+    public function testHex2RgbFromInvalidHexMinLength()
     {
         $this->expectException(\RuntimeException::class);
 
         (new ColorConverter)->hex2rgb('#00000');
     }
 
-    public function testHex2RgbWithInvalidMaxLength()
+    public function testHex2RgbFromInvalidHexMaxLength()
     {
         $this->expectException(\RuntimeException::class);
 
         (new ColorConverter)->hex2rgb('#0000000');
     }
 
-    public function testHex2RgbWithInvalidFirstCharacter()
+    public function testHex2RgbFromInvalidHexFirstCharacter()
     {
         $this->expectException(\RuntimeException::class);
 
         (new ColorConverter)->hex2rgb('-000000');
     }
 
-    public function testHex2RgbWithInvalidValues()
+    public function testHex2RgbFromInvalidHexDigits()
     {
         $this->expectException(\RuntimeException::class);
 
-        (new ColorConverter)->hex2rgb('#000Q00');
+        (new ColorConverter)->hex2rgb('#000QK0');
     }
 
     public function testRgb2Hex()
@@ -49,28 +49,28 @@ class ColorConverterTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('#ffffff', (new ColorConverter)->rgb2hex([255, 255, 255]));
     }
 
-    public function testRgb2HexWithInvalidRgbMinCount()
+    public function testRgb2HexFromInvalidRgbMinCount()
     {
         $this->expectException(\RuntimeException::class);
 
         (new ColorConverter)->rgb2hex([0, 0]);
     }
 
-    public function testRgb2HexWithInvalidRgbMaxCount()
+    public function testRgb2HexFromInvalidRgbMaxCount()
     {
         $this->expectException(\RuntimeException::class);
 
         (new ColorConverter)->rgb2hex([0, 0, 0, 0]);
     }
 
-    public function testRgb2HexWithInvalidRgbMinValue()
+    public function testRgb2HexFromInvalidRgbMinValue()
     {
         $this->expectException(\RuntimeException::class);
 
         (new ColorConverter)->rgb2hex([-1, -1, -1]);
     }
 
-    public function testRgb2HexWithInvalidRgbMaxValue()
+    public function testRgb2HexFromInvalidRgbMaxValue()
     {
         $this->expectException(\RuntimeException::class);
 
