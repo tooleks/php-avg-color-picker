@@ -1,7 +1,7 @@
 {
   "name": "tooleks/php-avg-color-picker",
   "type": "library",
-  "description": "The PHP Composer Package Starter Repository",
+  "description": "The PHP Average Color Picker Library",
   "version": "1.0.0",
   "keywords": [
     "php",
