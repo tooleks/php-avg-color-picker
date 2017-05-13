@@ -5,10 +5,12 @@
   "version": "1.0.0",
   "keywords": [
     "php",
-    "avg",
     "average",
+    "avg",
     "color",
-    "picker"
+    "picker",
+    "hex",
+    "rgb"
   ],
   "homepage": "https://github.com/tooleks/php-avg-color-picker",
   "license": "MIT",
