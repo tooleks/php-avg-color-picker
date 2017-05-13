@@ -1,0 +1,8 @@
+# IDE directory
+/.idea
+
+# Composer packages directory
+/vendor
+
+# Composer lock file
+/composer.lock
