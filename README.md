@@ -1,6 +1,6 @@
 # The PHP Average Color Picker Library
 
-The package provides the library for picking average color from the given image.
+The package provides the library for picking an average color from the given image.
 
 ## Example
 
