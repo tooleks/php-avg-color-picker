@@ -1,16 +1,18 @@
 # The PHP Average Color Picker Library
 
-The package provides the library for picking `average` color from the given image.
+The package provides the library for picking average color from the given image.
 
 ## Example
 
-### Input
+### Input - The Image Path
 
-![Input](https://github.com/tooleks/php-avg-color-picker/tree/master/resources/input.jpg)
+[The Image Path](https://github.com/tooleks/php-avg-color-picker/tree/master/resources/input.jpg)  
+![Input](https://raw.githubusercontent.com/tooleks/php-avg-color-picker/master/resources/input.jpg)
 
-### Output
+### Output - The Image Average Color
 
-![Output](https://github.com/tooleks/php-avg-color-picker/tree/master/resources/output.jpg)
+[The Image Average Color](https://github.com/tooleks/php-avg-color-picker/tree/master/resources/output.jpg)  
+![Output](https://raw.githubusercontent.com/tooleks/php-avg-color-picker/master/resources/output.jpg)
 
 ## Requirements
 
@@ -31,13 +33,13 @@ composer require tooleks/php-avg-color-picker
 ## Usage Examples
 
 ```php
+<?php
 
 use Tooleks\Php\AvgColorPicker\Gd\AvgColorPicker;
 
-$hexColor = (new AvgColorPicker)->getImageAvgHexColorByPath('/absolute/path/to/image.(jpg|jpeg|png|gif)');
+$color = (new AvgColorPicker)->getImageAvgHexColorByPath('/absolute/path/to/image.(jpg|jpeg|png|gif)');
 
-echo $hexColor; // Prints average HEX color of the image (Example: #fffff).
-
+echo $color; // Prints the average color of the image (Example: #fffff).
 ```
 
 ## Tests
