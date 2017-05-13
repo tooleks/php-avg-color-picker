@@ -3,27 +3,27 @@
 use Tooleks\Php\AvgColorPicker\Gd\AvgColorPicker;
 
 /**
- * Class AvgColorPickerTest.
+ * Class GdAvgColorPickerTest.
  */
-class AvgColorPickerTest extends TestCase
+class GdAvgColorPickerTest extends TestCase
 {
     public function testGetImageAvgHexColorByPathFromGif()
     {
-        $hex = (new AvgColorPicker)->getImageAvgHexColorByPath(__DIR__ . '/../../samples/valid_image.gif');
+        $hex = (new AvgColorPicker)->getImageAvgHexColorByPath(__DIR__ . '/../samples/valid_image.gif');
 
         $this->assertEquals('#855346', $hex);
     }
 
     public function testGetImageAvgHexColorByPathFromJpeg()
     {
-        $hex = (new AvgColorPicker)->getImageAvgHexColorByPath(__DIR__ . '/../../samples/valid_image.jpg');
+        $hex = (new AvgColorPicker)->getImageAvgHexColorByPath(__DIR__ . '/../samples/valid_image.jpg');
 
         $this->assertEquals('#835143', $hex);
     }
 
     public function testGetImageAvgHexColorByPathFromPng()
     {
-        $hex = (new AvgColorPicker)->getImageAvgHexColorByPath(__DIR__ . '/../../samples/valid_image.png');
+        $hex = (new AvgColorPicker)->getImageAvgHexColorByPath(__DIR__ . '/../samples/valid_image.png');
 
         $this->assertEquals('#835143', $hex);
     }
@@ -39,6 +39,6 @@ class AvgColorPickerTest extends TestCase
     {
         $this->expectException(\RuntimeException::class);
 
-        (new AvgColorPicker)->getImageAvgHexColorByPath(__DIR__ . '/../../samples/invalid_image.jpg');
+        (new AvgColorPicker)->getImageAvgHexColorByPath(__DIR__ . '/../samples/invalid_image.jpg');
     }
 }
