@@ -2,6 +2,16 @@
 
 The package provides the library for picking `average` color from the given image.
 
+## Example
+
+### Input
+
+![Input](https://github.com/tooleks/php-avg-color-picker/tree/master/resources/input.jpg)
+
+### Output
+
+![Output](https://github.com/tooleks/php-avg-color-picker/tree/master/resources/output.jpg)
+
 ## Requirements
 
 "php": "^7.0",
