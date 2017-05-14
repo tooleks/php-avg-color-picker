@@ -17,16 +17,16 @@ class AvgColorPicker implements AvgColorPickerContract
     /**
      * @inheritdoc
      */
-    public function getImageAvgHexColorByPath(string $imagePath): string
+    public function getImageAvgHexByPath(string $imagePath): string
     {
-        $avgRgbColor = [];
+        $avgHex = [];
 
-        $this->eachImagePixel($this->createImageResource($imagePath), function ($imageResource, $xCoordinate, $yCoordinate) use (&$avgRgbColor) {
-            $pixelRgbColor = $this->getImagePixelRgbColor($imageResource, $xCoordinate, $yCoordinate);
-            $avgRgbColor = $avgRgbColor ? $this->calculateAvgRgbColor($avgRgbColor, $pixelRgbColor) : $pixelRgbColor;
+        $this->eachImagePixel($this->createImageResource($imagePath), function ($imageResource, $xCoordinate, $yCoordinate) use (&$avgHex) {
+            $pixelRgb = $this->getImagePixelRgb($imageResource, $xCoordinate, $yCoordinate);
+            $avgHex = $avgHex ? $this->calculateAvgRgb($avgHex, $pixelRgb) : $pixelRgb;
         });
 
-        return (new ColorConverter)->rgb2hex($avgRgbColor);
+        return (new ColorConverter)->rgb2hex($avgHex);
     }
 
     /**
@@ -83,7 +83,7 @@ class AvgColorPicker implements AvgColorPickerContract
      * @param int $yCoordinate
      * @return array
      */
-    private function getImagePixelRgbColor($imageResource, int $xCoordinate, int $yCoordinate): array
+    private function getImagePixelRgb($imageResource, int $xCoordinate, int $yCoordinate): array
     {
         $rgb = imagecolorsforindex($imageResource, imagecolorat($imageResource, $xCoordinate, $yCoordinate));
 
@@ -97,7 +97,7 @@ class AvgColorPicker implements AvgColorPickerContract
      * @param array $secondRgb
      * @return array
      */
-    private function calculateAvgRgbColor(array $firstRgb, array $secondRgb): array
+    private function calculateAvgRgb(array $firstRgb, array $secondRgb): array
     {
         list($firstRed, $firstGreen, $firstBlue) = $firstRgb;
         list($secondRed, $secondGreen, $secondBlue) = $secondRgb;

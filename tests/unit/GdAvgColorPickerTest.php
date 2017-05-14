@@ -7,38 +7,38 @@ use Tooleks\Php\AvgColorPicker\Gd\AvgColorPicker;
  */
 class GdAvgColorPickerTest extends \PHPUnit\Framework\TestCase
 {
-    public function testGetImageAvgHexColorByPathFromGif()
+    public function testGetImageAvgHexByPathFromGif()
     {
-        $hex = (new AvgColorPicker)->getImageAvgHexColorByPath(__DIR__ . '/../samples/valid_image.gif');
+        $avgHex = (new AvgColorPicker)->getImageAvgHexByPath(__DIR__ . '/../samples/valid_image.gif');
 
-        $this->assertEquals('#855346', $hex);
+        $this->assertEquals('#855346', $avgHex);
     }
 
-    public function testGetImageAvgHexColorByPathFromJpeg()
+    public function testGetImageAvgHexByPathFromJpeg()
     {
-        $hex = (new AvgColorPicker)->getImageAvgHexColorByPath(__DIR__ . '/../samples/valid_image.jpg');
+        $avgHex = (new AvgColorPicker)->getImageAvgHexByPath(__DIR__ . '/../samples/valid_image.jpg');
 
-        $this->assertEquals('#835143', $hex);
+        $this->assertEquals('#835143', $avgHex);
     }
 
-    public function testGetImageAvgHexColorByPathFromPng()
+    public function testGetImageAvgHexByPathFromPng()
     {
-        $hex = (new AvgColorPicker)->getImageAvgHexColorByPath(__DIR__ . '/../samples/valid_image.png');
+        $avgHex = (new AvgColorPicker)->getImageAvgHexByPath(__DIR__ . '/../samples/valid_image.png');
 
-        $this->assertEquals('#835143', $hex);
+        $this->assertEquals('#835143', $avgHex);
     }
 
-    public function testGetImageAvgHexColorByPathFromInvalidPath()
+    public function testGetImageAvgHexByPathFromInvalidPath()
     {
         $this->expectException(\RuntimeException::class);
 
-        (new AvgColorPicker)->getImageAvgHexColorByPath('invalid/path');
+        (new AvgColorPicker)->getImageAvgHexByPath('invalid/path');
     }
 
-    public function testGetImageAvgHexColorByPathFromInvalidImage()
+    public function testGetImageAvgHexByPathFromInvalidImage()
     {
         $this->expectException(\RuntimeException::class);
 
-        (new AvgColorPicker)->getImageAvgHexColorByPath(__DIR__ . '/../samples/invalid_image.jpg');
+        (new AvgColorPicker)->getImageAvgHexByPath(__DIR__ . '/../samples/invalid_image.jpg');
     }
 }

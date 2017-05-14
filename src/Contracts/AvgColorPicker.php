@@ -10,10 +10,10 @@ namespace Tooleks\Php\AvgColorPicker\Contracts;
 interface AvgColorPicker
 {
     /**
-     * Get average hex color code of the image by its path.
+     * Get average color of the image by its path in HEX format.
      *
      * @param string $imagePath
      * @return string
      */
-    public function getImageAvgHexColorByPath(string $imagePath) : string;
+    public function getImageAvgHexByPath(string $imagePath): string;
 }

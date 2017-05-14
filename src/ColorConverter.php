@@ -12,7 +12,7 @@ use RuntimeException;
 class ColorConverter
 {
     /**
-     * Convert color value in HEX to RGB format.
+     * Convert color in HEX to RGB format.
      *
      * Example: HEX (string) #000000 -> RGB (array) [0, 0, 0]
      *
@@ -30,7 +30,7 @@ class ColorConverter
     }
 
     /**
-     * Assert HEX value.
+     * Assert HEX format.
      *
      * Note: The method accepts only fully specified HEX values (Example: #000000).
      *
@@ -59,7 +59,7 @@ class ColorConverter
     }
 
     /**
-     * Convert color value in RGB to HEX format.
+     * Convert color in RGB to HEX format.
      *
      * Example: RGB (array) [0, 0, 0] -> HEX (string) #000000
      *
@@ -77,7 +77,7 @@ class ColorConverter
     }
 
     /**
-     * Assert RGB value.
+     * Assert RGB format.
      *
      * @param array $rgb
      * @return void
