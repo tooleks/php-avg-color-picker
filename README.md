@@ -39,13 +39,13 @@ use Tooleks\Php\AvgColorPicker\Gd\AvgColorPicker;
 
 $imageAvgHexColor = (new AvgColorPicker)->getImageAvgHexByPath('/absolute/path/to/the/image.(jpg|jpeg|png|gif)');
 
-// The `$imageAvgHexColor` variable contains the average color in HEX format (#fffff) of the given image.
+// The `$imageAvgHexColor` variable contains the average color of the given image in HEX format (#fffff).
 ```
 
 You can use this value to show the average image color in its container before the image is loaded:
 
 ```php
-<div style="width: <?= $imageWidth ?>; height: <?= $imageHeight ?>; background-color: <?= $imageAvgHexColor ?>;">
+<div style="background-color: <?= $imageAvgHexColor ?>; width: <?= $imageWidth ?>; height: <?= $imageHeight ?>;">
     <img src="/url/to/the/image.(jpg|jpeg|png|gif)" alt="">
 </div>
 ```
