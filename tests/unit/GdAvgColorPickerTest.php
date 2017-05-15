@@ -30,7 +30,7 @@ class GdAvgColorPickerTest extends \PHPUnit\Framework\TestCase
 
     public function testGetImageAvgHexByPathFromInvalidPath()
     {
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(\PHPUnit_Framework_Error_Warning::class);
 
         (new AvgColorPicker)->getImageAvgHexByPath('invalid/path');
     }

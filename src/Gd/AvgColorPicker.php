@@ -37,10 +37,6 @@ class AvgColorPicker implements AvgColorPickerContract
      */
     private function createImageResource(string $imagePath)
     {
-        if (!file_exists($imagePath)) {
-            throw new RuntimeException(sprintf('The "%s" file not exist.', $imagePath));
-        }
-
         $imageCreateFunctions = [
             'image/png' => 'imagecreatefrompng',
             'image/jpeg' => 'imagecreatefromjpeg',
