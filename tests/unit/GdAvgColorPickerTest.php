@@ -1,5 +1,7 @@
 <?php
 
+use Tooleks\Php\AvgColorPicker\Exceptions\InvalidArgumentException;
+use Tooleks\Php\AvgColorPicker\Exceptions\InvalidMimeTypeException;
 use Tooleks\Php\AvgColorPicker\Gd\AvgColorPicker;
 
 /**
@@ -37,8 +39,22 @@ class GdAvgColorPickerTest extends \PHPUnit\Framework\TestCase
 
     public function testGetImageAvgHexByPathFromInvalidImage()
     {
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(InvalidMimeTypeException::class);
 
         (new AvgColorPicker)->getImageAvgHexByPath(__DIR__ . '/../samples/invalid_image.jpg');
+    }
+
+    public function testGetImageAvgHexByPathWithEachNthPixelArgument()
+    {
+        $avgHex = (new AvgColorPicker)->getImageAvgHexByPath(__DIR__ . '/../samples/valid_image.png', 20);
+
+        $this->assertEquals('#9d6553', $avgHex);
+    }
+
+    public function testGetImageAvgHexByPathWithInvalidEachNthPixelArgument()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        (new AvgColorPicker)->getImageAvgHexByPath(__DIR__ . '/../samples/valid_image.png', 500);
     }
 }

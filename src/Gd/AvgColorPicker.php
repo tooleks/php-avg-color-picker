@@ -3,9 +3,11 @@
 namespace Tooleks\Php\AvgColorPicker\Gd;
 
 use Closure;
-use RuntimeException;
 use Tooleks\Php\AvgColorPicker\ColorConverter;
 use Tooleks\Php\AvgColorPicker\Contracts\AvgColorPicker as AvgColorPickerContract;
+use Tooleks\Php\AvgColorPicker\Exceptions\InvalidArgumentException;
+use Tooleks\Php\AvgColorPicker\Exceptions\InvalidImageDimensionException;
+use Tooleks\Php\AvgColorPicker\Exceptions\InvalidMimeTypeException;
 
 /**
  * Class AvgColorPicker.
@@ -17,11 +19,9 @@ class AvgColorPicker implements AvgColorPickerContract
     /**
      * @inheritdoc
      */
-    public function getImageAvgHexByPath(string $imagePath): string
+    public function getImageAvgHexByPath(string $imagePath, int $eachNthPixel = 1): string
     {
-        $avgHex = [];
-
-        $this->eachImagePixel($this->createImageResource($imagePath), function ($imageResource, $xCoordinate, $yCoordinate) use (&$avgHex) {
+        $this->eachNthImagePixel($this->createImageResource($imagePath), $eachNthPixel, function ($imageResource, $xCoordinate, $yCoordinate) use (&$avgHex) {
             $pixelRgb = $this->getImagePixelRgb($imageResource, $xCoordinate, $yCoordinate);
             $avgHex = $avgHex ? $this->calculateAvgRgb($avgHex, $pixelRgb) : $pixelRgb;
         });
@@ -46,26 +46,39 @@ class AvgColorPicker implements AvgColorPickerContract
         $imageMimeType = mime_content_type($imagePath);
 
         if (!array_key_exists($imageMimeType, $imageCreateFunctions)) {
-            throw new RuntimeException(sprintf('The "%s" mime type not supported.', $imageMimeType));
+            throw new InvalidMimeTypeException(sprintf('The "%s" mime type is not supported.', $imageMimeType));
         }
 
-        return call_user_func($imageCreateFunctions[$imageMimeType], $imagePath);
+        return $imageCreateFunctions[$imageMimeType]($imagePath);
     }
 
     /**
-     * Apply callback function on each pixel in the image.
+     * Apply callback function on each n-th pixel in the image.
      *
-     * @param $imageResource
+     * @param resource $imageResource
+     * @param int $nthPixel
      * @param Closure $callback
      * @return void
      */
-    private function eachImagePixel($imageResource, Closure $callback)
+    private function eachNthImagePixel($imageResource, int $nthPixel, Closure $callback)
     {
         $imageWidth = imagesx($imageResource);
         $imageHeight = imagesy($imageResource);
 
-        for ($xCoordinate = 0; $xCoordinate < $imageWidth; $xCoordinate++) {
-            for ($yCoordinate = 0; $yCoordinate < $imageHeight; $yCoordinate++) {
+        if ($imageWidth < 1 || $imageHeight < 1) {
+            throw new InvalidImageDimensionException(
+                sprintf('The image dimension should be at least 1x1 px. The image with %sx%s px dimension given.', $imageWidth, $imageHeight)
+            );
+        }
+
+        if ($imageWidth <= $nthPixel || $imageHeight <= $nthPixel) {
+            throw new InvalidArgumentException(
+                sprintf('The $nthPixel argument value should not be greater than an image width (%s px) or height (%s px).', $imageWidth, $imageHeight)
+            );
+        }
+
+        for ($xCoordinate = 0; $xCoordinate < $imageWidth; $xCoordinate += $nthPixel) {
+            for ($yCoordinate = 0; $yCoordinate < $imageHeight; $yCoordinate += $nthPixel) {
                 $callback($imageResource, $xCoordinate, $yCoordinate);
             }
         }

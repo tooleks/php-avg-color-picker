@@ -1,6 +1,6 @@
 # The PHP Average Color Picker Library
 
-The package provides the library for picking an average color from the given image.
+The package provides the library for picking an average color from the given image. Currently it supports `image/png`, `image/jpeg`, `image/gif` image MIME types.
 
 ## Example
 
@@ -42,7 +42,19 @@ $imageAvgHexColor = (new AvgColorPicker)->getImageAvgHexByPath('/absolute/path/t
 // The `$imageAvgHexColor` variable contains the average color of the given image in HEX format (#fffff).
 ```
 
-You can use this value to show the average image color in its container before the image is loaded:
+To improve the performance while processing large images you can decrease the accuracy by passing the `$eachNthPixel` argument value. Example, if `$eachNthPixel === 2` the library will process each second pixel of the image.
+
+```php
+<?php
+
+use Tooleks\Php\AvgColorPicker\Gd\AvgColorPicker;
+
+$eachNthPixel = 2;
+
+$imageAvgHexColor = (new AvgColorPicker)->getImageAvgHexByPath('/absolute/path/to/the/image.(jpg|jpeg|png|gif)', $eachNthPixel);
+```
+
+You can use the calculated value to show the average image color in its container before the image is loaded.
 
 ```php
 <div style="background-color: <?= $imageAvgHexColor ?>; width: <?= $imageWidth ?>; height: <?= $imageHeight ?>;">
