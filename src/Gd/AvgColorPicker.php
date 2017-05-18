@@ -73,7 +73,7 @@ class AvgColorPicker implements AvgColorPickerContract
 
         if ($imageWidth <= $nthPixel || $imageHeight <= $nthPixel) {
             throw new InvalidArgumentException(
-                sprintf('The $nthPixel argument value should not be greater than an image width (%s px) or height (%s px).', $imageWidth, $imageHeight)
+                sprintf('The $nthPixel argument value should be lower than an image width (%s px) or height (%s px).', $imageWidth, $imageHeight)
             );
         }
 
