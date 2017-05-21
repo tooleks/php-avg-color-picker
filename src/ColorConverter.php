@@ -8,6 +8,7 @@ use RuntimeException;
  * Class ColorConverter.
  *
  * @package Tooleks\Php\AvgColorPicker
+ * @author Oleksandr Tolochko <tooleks@gmail.com>
  */
 class ColorConverter
 {

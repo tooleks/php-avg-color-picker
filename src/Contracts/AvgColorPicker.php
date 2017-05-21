@@ -6,6 +6,7 @@ namespace Tooleks\Php\AvgColorPicker\Contracts;
  * Interface AvgColorPicker.
  *
  * @package Tooleks\Php\AvgColorPicker\Contracts
+ * @author Oleksandr Tolochko <tooleks@gmail.com>
  */
 interface AvgColorPicker
 {
