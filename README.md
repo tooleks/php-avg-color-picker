@@ -66,7 +66,7 @@ You can use the calculated value to show the average image color in its containe
 
 ### AvgColorPicker::getImageAvgHexByPath Method
 
-Hardware:  
+#### Hardware  
 
 ```
 CPU Model name: Intel(R) Core(TM) i5-3337U CPU @ 1.80GHz
@@ -74,17 +74,19 @@ CPU(s): 4
 RAM: 6GB
 ```
 
-Software:  
+#### Software  
 
 ```
 OS: Kubuntu 17.04 (64-bit)
 PHP: 7.0
 ```
 
-Input image:  
+#### Input Image
+
 ![Input image](https://raw.githubusercontent.com/tooleks/php-avg-color-picker/master/resources/input.jpg)  
 
-Results:
+#### Results
+
 | `$eachNthPixel` Argument Value | Execution Time, s | Average Color, HEX |
 |:-------------------------------|:------------------|:-------------------|
 | 1                              | 0.73312401771545  | #835143            |
