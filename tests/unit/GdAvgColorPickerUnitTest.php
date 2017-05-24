@@ -1,6 +1,5 @@
 <?php
 
-use Tooleks\Php\AvgColorPicker\Exceptions\InvalidArgumentException;
 use Tooleks\Php\AvgColorPicker\Exceptions\InvalidMimeTypeException;
 use Tooleks\Php\AvgColorPicker\Gd\AvgColorPicker;
 
@@ -13,21 +12,21 @@ class GdAvgColorPickerUnitTest extends \PHPUnit\Framework\TestCase
     {
         $avgHex = (new AvgColorPicker)->getImageAvgHexByPath(__DIR__ . '/../samples/valid_image.gif');
 
-        $this->assertEquals('#855346', $avgHex);
+        $this->assertEquals('#754635', $avgHex);
     }
 
     public function testGetImageAvgHexByPathFromJpeg()
     {
         $avgHex = (new AvgColorPicker)->getImageAvgHexByPath(__DIR__ . '/../samples/valid_image.jpg');
 
-        $this->assertEquals('#835143', $avgHex);
+        $this->assertEquals('#6d4635', $avgHex);
     }
 
     public function testGetImageAvgHexByPathFromPng()
     {
         $avgHex = (new AvgColorPicker)->getImageAvgHexByPath(__DIR__ . '/../samples/valid_image.png');
 
-        $this->assertEquals('#835143', $avgHex);
+        $this->assertEquals('#6d4635', $avgHex);
     }
 
     public function testGetImageAvgHexByPathFromInvalidPath()
@@ -44,17 +43,38 @@ class GdAvgColorPickerUnitTest extends \PHPUnit\Framework\TestCase
         (new AvgColorPicker)->getImageAvgHexByPath(__DIR__ . '/../samples/invalid_image.jpg');
     }
 
-    public function testGetImageAvgHexByPathWithEachNthPixelArgument()
+    public function testGetImageAvgRgbByPathFromGif()
     {
-        $avgHex = (new AvgColorPicker)->getImageAvgHexByPath(__DIR__ . '/../samples/valid_image.png', 20);
+        $avgRgb = (new AvgColorPicker)->getImageAvgRgbByPath(__DIR__ . '/../samples/valid_image.gif');
 
-        $this->assertEquals('#9d6553', $avgHex);
+        $this->assertEquals([117, 70, 53], $avgRgb);
     }
 
-    public function testGetImageAvgHexByPathWithInvalidEachNthPixelArgument()
+    public function testGetImageAvgRgbByPathFromJpeg()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $avgRgb = (new AvgColorPicker)->getImageAvgRgbByPath(__DIR__ . '/../samples/valid_image.jpg');
 
-        (new AvgColorPicker)->getImageAvgHexByPath(__DIR__ . '/../samples/valid_image.png', 500);
+        $this->assertEquals([109, 70, 53], $avgRgb);
+    }
+
+    public function testGetImageAvgRgbByPathFromPng()
+    {
+        $avgRgb = (new AvgColorPicker)->getImageAvgRgbByPath(__DIR__ . '/../samples/valid_image.png');
+
+        $this->assertEquals([109, 70, 53], $avgRgb);
+    }
+
+    public function testGetImageAvgRgbByPathFromInvalidPath()
+    {
+        $this->expectException(\PHPUnit_Framework_Error_Warning::class);
+
+        (new AvgColorPicker)->getImageAvgRgbByPath('invalid/path');
+    }
+
+    public function testGetImageAvgRgbByPathFromInvalidImage()
+    {
+        $this->expectException(InvalidMimeTypeException::class);
+
+        (new AvgColorPicker)->getImageAvgRgbByPath(__DIR__ . '/../samples/invalid_image.jpg');
     }
 }

@@ -37,21 +37,19 @@ composer require tooleks/php-avg-color-picker
 
 use Tooleks\Php\AvgColorPicker\Gd\AvgColorPicker;
 
-$imageAvgHexColor = (new AvgColorPicker)->getImageAvgHexByPath('/absolute/path/to/the/image.(jpg|jpeg|png|gif)');
+$imageAvgRgbColor = (new AvgColorPicker)->getImageAvgRgbByPath('/absolute/path/to/the/image.(jpg|jpeg|png|gif)');
 
-// The `$imageAvgHexColor` variable contains the average color of the given image in HEX format (#fffff).
+// The `$imageAvgRgbColor` variable contains the average color of the given image in RGB format [255, 255, 255].
 ```
-
-To improve the performance while processing large images you can decrease the accuracy by passing the `$eachNthPixel` argument value. Example, if `$eachNthPixel === 2` the library will process each second pixel of the image. By providing this argument you can improve the performance up to 33x! See the `Performance` section below.
 
 ```php
 <?php
 
 use Tooleks\Php\AvgColorPicker\Gd\AvgColorPicker;
 
-$eachNthPixel = 2;
+$imageAvgHexColor = (new AvgColorPicker)->getImageAvgHexByPath('/absolute/path/to/the/image.(jpg|jpeg|png|gif)');
 
-$imageAvgHexColor = (new AvgColorPicker)->getImageAvgHexByPath('/absolute/path/to/the/image.(jpg|jpeg|png|gif)', $eachNthPixel);
+// The `$imageAvgHexColor` variable contains the average color of the given image in HEX format (#fffff).
 ```
 
 You can use the calculated value to show the average image color in its container before the image is loaded.
@@ -61,40 +59,6 @@ You can use the calculated value to show the average image color in its containe
     <img src="/url/to/the/image.(jpg|jpeg|png|gif)" alt="">
 </div>
 ```
-
-## Performance
-
-### AvgColorPicker::getImageAvgHexByPath Method
-
-#### Hardware  
-
-```
-CPU Model name: Intel(R) Core(TM) i5-3337U CPU @ 1.80GHz
-CPU(s): 4
-RAM: 6GB
-```
-
-#### Software  
-
-```
-OS: Kubuntu 17.04 (64-bit)
-PHP: 7.0
-```
-
-#### Input Image
-
-![Input image](https://raw.githubusercontent.com/tooleks/php-avg-color-picker/master/resources/input.jpg)  
-
-#### Results
-
-| `$eachNthPixel` Argument Value | Execution Time, s | Average Color, HEX |
-|:-------------------------------|:------------------|:-------------------|
-| 1                              | 0.75672316551208  | #835143            |
-| 2                              | 0.18338799476624  | #7e4d3f            |
-| 3                              | 0.082342147827148 | #794d40            |
-| 4                              | 0.048031806945801 | #7f4d3f            |
-| 5                              | 0.030956029891968 | #804f41            |
-| 6                              | 0.022440195083618 | #7c4d3e            |
 
 ## Tests
 
