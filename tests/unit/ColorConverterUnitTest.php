@@ -3,9 +3,9 @@
 use Tooleks\Php\AvgColorPicker\ColorConverter;
 
 /**
- * Class ColorConverterTest.
+ * Class ColorConverterUnitTest.
  */
-class ColorConverterTest extends \PHPUnit\Framework\TestCase
+class ColorConverterUnitTest extends \PHPUnit\Framework\TestCase
 {
     public function testHex2Rgb()
     {

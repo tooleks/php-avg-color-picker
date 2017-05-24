@@ -5,9 +5,9 @@ use Tooleks\Php\AvgColorPicker\Exceptions\InvalidMimeTypeException;
 use Tooleks\Php\AvgColorPicker\Gd\AvgColorPicker;
 
 /**
- * Class GdAvgColorPickerTest.
+ * Class GdAvgColorPickerUnitTest.
  */
-class GdAvgColorPickerTest extends \PHPUnit\Framework\TestCase
+class GdAvgColorPickerUnitTest extends \PHPUnit\Framework\TestCase
 {
     public function testGetImageAvgHexByPathFromGif()
     {
