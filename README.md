@@ -42,7 +42,7 @@ $imageAvgHexColor = (new AvgColorPicker)->getImageAvgHexByPath('/absolute/path/t
 // The `$imageAvgHexColor` variable contains the average color of the given image in HEX format (#fffff).
 ```
 
-To improve the performance while processing large images you can decrease the accuracy by passing the `$eachNthPixel` argument value. Example, if `$eachNthPixel === 2` the library will process each second pixel of the image. By providing this argument you can improve the performance up to 23x! See the `Performance` section below.
+To improve the performance while processing large images you can decrease the accuracy by passing the `$eachNthPixel` argument value. Example, if `$eachNthPixel === 2` the library will process each second pixel of the image. By providing this argument you can improve the performance up to 33x! See the `Performance` section below.
 
 ```php
 <?php
@@ -89,12 +89,12 @@ PHP: 7.0
 
 | `$eachNthPixel` Argument Value | Execution Time, s | Average Color, HEX |
 |:-------------------------------|:------------------|:-------------------|
-| 1                              | 0.73312401771545  | #835143            |
-| 2                              | 0.18427085876465  | #7e4d3f            |
-| 3                              | 0.088268995285034 | #794d40            |
-| 4                              | 0.048856973648071 | #7f4d3f            |
-| 5                              | 0.031373023986816 | #804f41            |
-| 6                              | 0.022485017776489 | #7c4d3e            |
+| 1                              | 0.75672316551208  | #835143            |
+| 2                              | 0.18338799476624  | #7e4d3f            |
+| 3                              | 0.082342147827148 | #794d40            |
+| 4                              | 0.048031806945801 | #7f4d3f            |
+| 5                              | 0.030956029891968 | #804f41            |
+| 6                              | 0.022440195083618 | #7c4d3e            |
 
 ## Tests
 
