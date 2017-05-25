@@ -46,6 +46,7 @@ class AvgColorPicker implements AvgColorPickerContract
      * Create image resource.
      *
      * @param string $imagePath
+     * @throws InvalidMimeTypeException
      * @return resource
      */
     private function createImageResource(string $imagePath)
@@ -69,16 +70,14 @@ class AvgColorPicker implements AvgColorPickerContract
      * Assert image.
      *
      * @param resource $imageResource
+     * @throws InvalidImageDimensionException
      * @return void
      */
     private function assertImage($imageResource)
     {
-        $imageWidth = imagesx($imageResource);
-        $imageHeight = imagesy($imageResource);
-
-        if ($imageWidth < 1 || $imageHeight < 1) {
+        if (imagesx($imageResource) < 1 || imagesy($imageResource) < 1) {
             throw new InvalidImageDimensionException(
-                sprintf('The image dimension should be at least 1x1 px. The image with %sx%s px dimension given.', $imageWidth, $imageHeight)
+                sprintf('The image dimensions should be at least 1x1px. The image with %sx%spx dimensions given.', $imageWidth, $imageHeight)
             );
         }
     }
@@ -89,25 +88,12 @@ class AvgColorPicker implements AvgColorPickerContract
      * @param resource $imageResource
      * @return array
      */
-    private function calculateImageAvgRgb($imageResource)
+    private function calculateImageAvgRgb($imageResource): array
     {
         $scaledImageResource = imagescale($imageResource, 1, 1);
 
-        return $this->getImagePixelRgb($scaledImageResource, 0, 0);
-    }
+        $avgRgb = imagecolorsforindex($scaledImageResource, imagecolorat($scaledImageResource, 0, 0));
 
-    /**
-     * Get image pixel color in RGB format.
-     *
-     * @param resource $imageResource
-     * @param int $xCoordinate
-     * @param int $yCoordinate
-     * @return array
-     */
-    private function getImagePixelRgb($imageResource, int $xCoordinate, int $yCoordinate): array
-    {
-        $rgb = imagecolorsforindex($imageResource, imagecolorat($imageResource, $xCoordinate, $yCoordinate));
-
-        return array_slice(array_values($rgb), 0, 3);
+        return array_slice(array_values($avgRgb), 0, 3);
     }
 }
