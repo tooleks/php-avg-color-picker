@@ -40,6 +40,10 @@ use Tooleks\Php\AvgColorPicker\Gd\AvgColorPicker;
 $imageAvgRgbColor = (new AvgColorPicker)->getImageAvgRgbByPath($imagePath);
 // or
 $imageAvgRgbColor = (new AvgColorPicker)->getImageAvgRgbByResource($gdImageResource);
+// or
+$imageAvgRgbColor = (new AvgColorPicker)->getImageAvgRgb($imagePath);
+// or
+$imageAvgRgbColor = (new AvgColorPicker)->getImageAvgRgb($gdImageResource);
 
 // The `$imageAvgRgbColor` variable contains the average color of the given image in RGB format (array)[255, 255, 255].
 ```
@@ -52,6 +56,10 @@ use Tooleks\Php\AvgColorPicker\Gd\AvgColorPicker;
 $imageAvgHexColor = (new AvgColorPicker)->getImageAvgHexByPath($imagePath);
 // or
 $imageAvgHexColor = (new AvgColorPicker)->getImageAvgHexByResource($gdImageResource);
+// or
+$imageAvgHexColor = (new AvgColorPicker)->getImageAvgHex($imagePath);
+// or
+$imageAvgHexColor = (new AvgColorPicker)->getImageAvgHex($gdImageResource);
 
 // The `$imageAvgHexColor` variable contains the average color of the given image in HEX format (string)"#fffff".
 ```
