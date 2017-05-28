@@ -50,7 +50,6 @@ class AvgColorPicker implements AvgColorPickerContract
 
         unset($image);
 
-
         return $hex;
     }
 
@@ -64,7 +63,6 @@ class AvgColorPicker implements AvgColorPickerContract
         $rgb = $image->getAvgRgb();
 
         unset($image);
-
 
         return $rgb;
     }
