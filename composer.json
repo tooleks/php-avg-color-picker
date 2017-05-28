@@ -2,7 +2,7 @@
   "name": "tooleks/php-avg-color-picker",
   "type": "library",
   "description": "The PHP Average Color Picker Library",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "keywords": [
     "php",
     "average",

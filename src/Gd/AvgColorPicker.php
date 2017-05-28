@@ -2,7 +2,6 @@
 
 namespace Tooleks\Php\AvgColorPicker\Gd;
 
-use Tooleks\Php\AvgColorPicker\ColorConverter;
 use Tooleks\Php\AvgColorPicker\Contracts\AvgColorPicker as AvgColorPickerContract;
 
 /**
@@ -32,6 +31,34 @@ class AvgColorPicker implements AvgColorPickerContract
     public function getImageAvgRgbByPath(string $imagePath): array
     {
         $image = Image::createFromPath($imagePath);
+
+        $rgb = $image->getAvgRgb();
+
+        unset($image);
+
+        return $rgb;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getImageAvgHexByResource($imageResource): string
+    {
+        $image = Image::createFromResource($imageResource);
+
+        $hex = $image->getAvgHex();
+
+        unset($image);
+
+        return $hex;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getImageAvgRgbByResource($imageResource): array
+    {
+        $image = Image::createFromResource($imageResource);
 
         $rgb = $image->getAvgRgb();
 

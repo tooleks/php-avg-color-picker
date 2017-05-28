@@ -25,4 +25,20 @@ interface AvgColorPicker
      * @return array
      */
     public function getImageAvgRgbByPath(string $imagePath): array;
+
+    /**
+     * Get average color of the image by its resource in HEX format.
+     *
+     * @param resource $imageResource
+     * @return string
+     */
+    public function getImageAvgHexByResource($imageResource): string;
+
+    /**
+     * Get average color of the image by its resource in RGB format.
+     *
+     * @param resource $imageResource
+     * @return array
+     */
+    public function getImageAvgRgbByResource($imageResource): array;
 }
