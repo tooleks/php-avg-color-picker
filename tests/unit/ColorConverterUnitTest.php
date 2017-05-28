@@ -5,75 +5,47 @@ use Tooleks\Php\AvgColorPicker\ColorConverter;
 /**
  * Class ColorConverterUnitTest.
  */
-class ColorConverterUnitTest extends \PHPUnit\Framework\TestCase
+class ColorConverterUnitTest extends UnitTestCase
 {
-    public function testHex2Rgb()
+    /**
+     * @dataProvider testValidHexRgbPairsProvider
+     * @param string $hex
+     * @param array $rgb
+     */
+    public function testHex2Rgb(string $hex, array $rgb)
     {
-        $this->assertEquals([0, 0, 0], (new ColorConverter)->hex2rgb('#000000'));
-
-        $this->assertEquals([255, 255, 255], (new ColorConverter)->hex2rgb('#ffffff'));
+        $this->assertEquals($rgb, (new ColorConverter)->hex2rgb($hex));
     }
 
-    public function testHex2RgbFromInvalidHexMinLength()
+    /**
+     * @dataProvider testValidHexRgbPairsProvider
+     * @param string $hex
+     * @param array $rgb
+     */
+    public function testRgb2Hex(string $hex, array $rgb)
+    {
+        $this->assertEquals($hex, (new ColorConverter)->rgb2hex($rgb));
+    }
+
+    /**
+     * @dataProvider testInvalidHexProvider
+     * @param string $hex
+     */
+    public function testHex2RgbFromInvalidValue(string $hex)
     {
         $this->expectException(\RuntimeException::class);
 
-        (new ColorConverter)->hex2rgb('#00000');
+        (new ColorConverter)->hex2rgb($hex);
     }
 
-    public function testHex2RgbFromInvalidHexMaxLength()
+    /**
+     * @dataProvider testInvalidRgbProvider
+     * @param array $rgb
+     */
+    public function testRgb2HexFromInvalidValue(array $rgb)
     {
         $this->expectException(\RuntimeException::class);
 
-        (new ColorConverter)->hex2rgb('#0000000');
-    }
-
-    public function testHex2RgbFromInvalidHexFirstCharacter()
-    {
-        $this->expectException(\RuntimeException::class);
-
-        (new ColorConverter)->hex2rgb('-000000');
-    }
-
-    public function testHex2RgbFromInvalidHexDigits()
-    {
-        $this->expectException(\RuntimeException::class);
-
-        (new ColorConverter)->hex2rgb('#000QK0');
-    }
-
-    public function testRgb2Hex()
-    {
-        $this->assertEquals('#000000', (new ColorConverter)->rgb2hex([0, 0, 0]));
-
-        $this->assertEquals('#ffffff', (new ColorConverter)->rgb2hex([255, 255, 255]));
-    }
-
-    public function testRgb2HexFromInvalidRgbMinCount()
-    {
-        $this->expectException(\RuntimeException::class);
-
-        (new ColorConverter)->rgb2hex([0, 0]);
-    }
-
-    public function testRgb2HexFromInvalidRgbMaxCount()
-    {
-        $this->expectException(\RuntimeException::class);
-
-        (new ColorConverter)->rgb2hex([0, 0, 0, 0]);
-    }
-
-    public function testRgb2HexFromInvalidRgbMinValue()
-    {
-        $this->expectException(\RuntimeException::class);
-
-        (new ColorConverter)->rgb2hex([-1, -1, -1]);
-    }
-
-    public function testRgb2HexFromInvalidRgbMaxValue()
-    {
-        $this->expectException(\RuntimeException::class);
-
-        (new ColorConverter)->rgb2hex([256, 256, 256]);
+        (new ColorConverter)->rgb2hex($rgb);
     }
 }

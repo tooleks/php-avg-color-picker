@@ -89,22 +89,52 @@ class GdImage extends UnitTestCase
     /**
      * @dataProvider testValidImagePathProvider
      * @param string $path
+     * @param int $width
+     * @param int $height
+     * @param string $hex
+     * @param array $rgb
      */
-    public function testGetImageAvgHex(string $path)
+    public function testGetImageAvgHexFromPath(string $path, int $width, int $height, string $hex, array $rgb)
     {
-        $hex = Image::createFromPath($path)->getAvgHex();
-
-        $this->assertTrue($hex === '#734534' || $hex === '#6b4534');
+        $this->assertEquals($hex, Image::createFromPath($path)->getAvgHex());
     }
 
     /**
      * @dataProvider testValidImagePathProvider
      * @param string $path
+     * @param int $width
+     * @param int $height
+     * @param string $hex
+     * @param array $rgb
      */
-    public function testGetImageAvgRgb(string $path)
+    public function testGetImageAvgRgbFromPath(string $path, int $width, int $height, string $hex, array $rgb)
     {
-        $rgb = Image::createFromPath($path)->getAvgRgb();
+        $this->assertEquals($rgb, Image::createFromPath($path)->getAvgRgb());
+    }
 
-        $this->assertTrue(!array_diff($rgb, [115, 69, 52]) || !array_diff($rgb, [107, 69, 52]));
+    /**
+     * @dataProvider testValidImageResourceProvider
+     * @param resource $resource
+     * @param int $width
+     * @param int $height
+     * @param string $hex
+     * @param array $rgb
+     */
+    public function testGetImageAvgHexFromResource($resource, int $width, int $height, string $hex, array $rgb)
+    {
+        $this->assertEquals($hex, Image::createFromResource($resource)->getAvgHex());
+    }
+
+    /**
+     * @dataProvider testValidImageResourceProvider
+     * @param resource $resource
+     * @param int $width
+     * @param int $height
+     * @param string $hex
+     * @param array $rgb
+     */
+    public function testGetImageAvgRgbFromResource($resource, int $width, int $height, string $hex, array $rgb)
+    {
+        $this->assertEquals($rgb, Image::createFromResource($resource)->getAvgRgb());
     }
 }

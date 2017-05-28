@@ -10,22 +10,26 @@ class GdAvgColorPickerUnitTest extends UnitTestCase
     /**
      * @dataProvider testValidImagePathProvider
      * @param string $path
+     * @param int $width
+     * @param int $height
+     * @param string $hex
+     * @param array $rgb
      */
-    public function testGetImageAvgHexByPath(string $path)
+    public function testGetImageAvgHexByPath(string $path, int $width, int $height, string $hex, array $rgb)
     {
-        $hex = (new AvgColorPicker)->getImageAvgHexByPath($path);
-
-        $this->assertTrue($hex === '#734534' || $hex === '#6b4534');
+        $this->assertEquals($hex, (new AvgColorPicker)->getImageAvgHexByPath($path));
     }
 
     /**
      * @dataProvider testValidImagePathProvider
      * @param string $path
+     * @param int $width
+     * @param int $height
+     * @param string $hex
+     * @param array $rgb
      */
-    public function testGetImageAvgRgbByPath(string $path)
+    public function testGetImageAvgRgbByPath(string $path, int $width, int $height, string $hex, array $rgb)
     {
-        $rgb = (new AvgColorPicker)->getImageAvgRgbByPath($path);
-
-        $this->assertTrue(!array_diff($rgb, [115, 69, 52]) || !array_diff($rgb, [107, 69, 52]));
+        $this->assertEquals($rgb, (new AvgColorPicker)->getImageAvgRgbByPath($path));
     }
 }
