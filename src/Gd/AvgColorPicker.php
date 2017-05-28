@@ -50,6 +50,7 @@ class AvgColorPicker implements AvgColorPickerContract
 
         unset($image);
 
+
         return $hex;
     }
 
@@ -64,6 +65,23 @@ class AvgColorPicker implements AvgColorPickerContract
 
         unset($image);
 
+
         return $rgb;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getImageAvgHex($image): string
+    {
+        return is_resource($image) ? $this->getImageAvgHexByResource($image) : $this->getImageAvgHexByPath($image);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getImageAvgRgb($image): array
+    {
+        return is_resource($image) ? $this->getImageAvgRgbByResource($image) : $this->getImageAvgRgbByPath($image);
     }
 }

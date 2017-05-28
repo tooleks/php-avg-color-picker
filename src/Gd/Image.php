@@ -23,15 +23,22 @@ class Image
     protected $resource;
 
     /**
+     * @var bool
+     */
+    protected $cleanupOnDestruct;
+
+    /**
      * Image constructor.
      *
      * @param resource $resource
+     * @param bool $cleanupOnDestruct
      */
-    protected function __construct($resource)
+    protected function __construct($resource, bool $cleanupOnDestruct = true)
     {
         $this->assertResource($resource);
 
         $this->resource = $resource;
+        $this->cleanupOnDestruct = $cleanupOnDestruct;
     }
 
     /**
@@ -39,7 +46,9 @@ class Image
      */
     public function __destruct()
     {
-        imagedestroy($this->resource);
+        if ($this->cleanupOnDestruct) {
+            imagedestroy($this->resource);
+        }
     }
 
     /**
@@ -70,7 +79,7 @@ class Image
      */
     public static function createFromResource($resource)
     {
-        return new static($resource);
+        return new static($resource, false);
     }
 
     /**

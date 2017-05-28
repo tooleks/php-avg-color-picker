@@ -43,94 +43,77 @@ class GdImage extends UnitTestCase
     }
 
     /**
-     * @dataProvider testValidImagePathProvider
+     * @dataProvider testValidImageProvider
+     * @param $resource
      * @param string $path
+     * @param int $width
+     * @param int $height
+     * @param string $hex
+     * @param array $rgb
      */
-    public function testCreateFromValidImagePath(string $path)
+    public function testCreateFromValidImage($resource, string $path, int $width, int $height, string $hex, array $rgb)
     {
-        $image = Image::createFromPath($path);
-
-        $this->assertInstanceOf(Image::class, $image);
+        $this->assertInstanceOf(Image::class, Image::createFromPath($path));
+        $this->assertInstanceOf(Image::class, Image::createFromResource($resource));
     }
 
     /**
-     * @dataProvider testValidImageResourceProvider
-     * @param resource $resource
-     */
-    public function testCreateFromValidImageResource($resource)
-    {
-        $image = Image::createFromResource($resource);
-
-        $this->assertInstanceOf(Image::class, $image);
-    }
-
-    /**
-     * @dataProvider testValidImagePathProvider
+     * @dataProvider testValidImageProvider
+     * @param $resource
      * @param string $path
+     * @param int $width
+     * @param int $height
+     * @param string $hex
+     * @param array $rgb
      */
-    public function testGetImageWidth(string $path, int $width, int $height, string $hex, array $rgb)
+    public function testGetImageWidth($resource, string $path, int $width, int $height, string $hex, array $rgb)
     {
         $this->assertEquals($width, Image::createFromPath($path)->getWidth());
+        $this->assertEquals($width, Image::createFromResource($resource)->getWidth());
     }
 
     /**
-     * @dataProvider testValidImagePathProvider
+     * @dataProvider testValidImageProvider
+     * @param $resource
      * @param string $path
+     * @param int $width
+     * @param int $height
+     * @param string $hex
+     * @param array $rgb
      */
-    public function testGetImageHeight(string $path, int $width, int $height, string $hex, array $rgb)
+    public function testGetImageHeight($resource, string $path, int $width, int $height, string $hex, array $rgb)
     {
         $this->assertEquals($height, Image::createFromPath($path)->getHeight());
+        $this->assertEquals($height, Image::createFromResource($resource)->getHeight());
     }
 
     /**
-     * @dataProvider testValidImagePathProvider
+     * @dataProvider testValidImageProvider
+     * @param $resource
      * @param string $path
      * @param int $width
      * @param int $height
      * @param string $hex
      * @param array $rgb
      */
-    public function testGetImageAvgHexFromPath(string $path, int $width, int $height, string $hex, array $rgb)
+    public function testGetImageAvgHex($resource, string $path, int $width, int $height, string $hex, array $rgb)
     {
         $this->assertEquals($hex, Image::createFromPath($path)->getAvgHex());
-    }
-
-    /**
-     * @dataProvider testValidImagePathProvider
-     * @param string $path
-     * @param int $width
-     * @param int $height
-     * @param string $hex
-     * @param array $rgb
-     */
-    public function testGetImageAvgRgbFromPath(string $path, int $width, int $height, string $hex, array $rgb)
-    {
-        $this->assertEquals($rgb, Image::createFromPath($path)->getAvgRgb());
-    }
-
-    /**
-     * @dataProvider testValidImageResourceProvider
-     * @param resource $resource
-     * @param int $width
-     * @param int $height
-     * @param string $hex
-     * @param array $rgb
-     */
-    public function testGetImageAvgHexFromResource($resource, int $width, int $height, string $hex, array $rgb)
-    {
         $this->assertEquals($hex, Image::createFromResource($resource)->getAvgHex());
     }
 
     /**
-     * @dataProvider testValidImageResourceProvider
-     * @param resource $resource
+     * @dataProvider testValidImageProvider
+     * @param $resource
+     * @param string $path
      * @param int $width
      * @param int $height
      * @param string $hex
      * @param array $rgb
      */
-    public function testGetImageAvgRgbFromResource($resource, int $width, int $height, string $hex, array $rgb)
+    public function testGetImageAvgRgb($resource, string $path, int $width, int $height, string $hex, array $rgb)
     {
+        $this->assertEquals($rgb, Image::createFromPath($path)->getAvgRgb());
         $this->assertEquals($rgb, Image::createFromResource($resource)->getAvgRgb());
     }
 }
