@@ -68,22 +68,18 @@ class GdImage extends UnitTestCase
      * @dataProvider testValidImagePathProvider
      * @param string $path
      */
-    public function testGetImageWidth(string $path)
+    public function testGetImageWidth(string $path, int $width, int $height, string $hex, array $rgb)
     {
-        $width = Image::createFromPath($path)->getWidth();
-
-        $this->assertEquals(400, $width);
+        $this->assertEquals($width, Image::createFromPath($path)->getWidth());
     }
 
     /**
      * @dataProvider testValidImagePathProvider
      * @param string $path
      */
-    public function testGetImageHeight(string $path)
+    public function testGetImageHeight(string $path, int $width, int $height, string $hex, array $rgb)
     {
-        $height = Image::createFromPath($path)->getHeight();
-
-        $this->assertEquals(225, $height);
+        $this->assertEquals($height, Image::createFromPath($path)->getHeight());
     }
 
     /**
