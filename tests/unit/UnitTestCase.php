@@ -5,7 +5,7 @@
  */
 abstract class UnitTestCase extends \PHPUnit\Framework\TestCase
 {
-    public function testValidHexRgbPairsProvider()
+    public function testValidColorsProvider()
     {
         return [
             ['#000000', [0, 0, 0]],

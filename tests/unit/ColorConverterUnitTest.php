@@ -8,7 +8,7 @@ use Tooleks\Php\AvgColorPicker\ColorConverter;
 class ColorConverterUnitTest extends UnitTestCase
 {
     /**
-     * @dataProvider testValidHexRgbPairsProvider
+     * @dataProvider testValidColorsProvider
      * @param string $hex
      * @param array $rgb
      */
@@ -18,7 +18,7 @@ class ColorConverterUnitTest extends UnitTestCase
     }
 
     /**
-     * @dataProvider testValidHexRgbPairsProvider
+     * @dataProvider testValidColorsProvider
      * @param string $hex
      * @param array $rgb
      */
