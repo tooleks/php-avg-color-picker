@@ -5,9 +5,9 @@ use Tooleks\Php\AvgColorPicker\Exceptions\InvalidMimeTypeException;
 use Tooleks\Php\AvgColorPicker\Gd\Image;
 
 /**
- * Class GdImage.
+ * Class GdImageUnitTest.
  */
-class GdImage extends UnitTestCase
+class GdImageUnitTest extends UnitTestCase
 {
     /**
      * @dataProvider testInvalidMimeTypeImagePathProvider

@@ -134,7 +134,7 @@ class Image
      */
     public function getAvgRgb(): array
     {
-        $resource = imagescale($this->resource, 1, 1, IMG_BICUBIC);
+        $resource = imagescale($this->resource, 1, 1);
 
         $rgba = imagecolorsforindex($resource, imagecolorat($resource, 0, 0));
 
