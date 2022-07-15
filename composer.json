@@ -23,7 +23,7 @@
   ],
   "minimum-stability": "stable",
   "require": {
-    "php": "^7.0",
+    "php": ">=^7.0 || >=^8.0",
     "ext-mbstring": "*",
     "ext-gd": "*"
   },
