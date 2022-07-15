@@ -1,5 +1,5 @@
 {
-  "name": "tooleks/php-avg-color-picker",
+  "name": "malaynayak/php-avg-color-picker",
   "type": "library",
   "description": "The PHP Average Color Picker Library",
   "version": "1.1.2",
@@ -39,5 +39,8 @@
     "classmap": [
       "tests"
     ]
+  },
+  "replace": {
+    "tooleks/php-avg-color-picker": "v1.1.2"
   }
 }
